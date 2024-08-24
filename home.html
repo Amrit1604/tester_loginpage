@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+    <p>You are logged in.</p>
+
+    <!-- Back button to go back to the login page -->
+    <button onclick="goBack()">Back to Login</button>
+
+    <script>
+        function goBack() {
+            // Simply redirect back to the login page without clearing local storage
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

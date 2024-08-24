@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div style="float: inline-end;" class="login">
+        <div id="loginForm" style="display: block;">
+            <h2>Login Form</h2>
+            <form>
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Password:</label><br>
+                <input type="password" id="password" name="password" required><br><br>
+                <!-- Login button -->
+                <button type="button" onclick="login()">Login</button>
+                <!-- Reset button -->
+                <button type="button" onclick="resetLogin()">Reset</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <embed width="100%" height="500px" src="projectfooter.html">
+    </footer>
+
+    <script>
+        function login() {
+            // Get username and password from input fields
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Store login details in local storage
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+
+            // Redirect to another page after login
+            window.location.href = 'home.html'; // Redirect to the appropriate page
+        }
+
+        // Function to clear login data
+        function resetLogin() {
+            // Clear local storage
+            localStorage.removeItem('username');
+            localStorage.removeItem('password');
+            
+            // Reload the login page to reset the form
+            window.location.reload();
+        }
+
+        // Function to check if user is logged in
+        function checkLogin() {
+            const username = localStorage.getItem('username');
+            if (username) {
+                // Hide the login form if the user is already logged in
+                document.getElementById('loginForm').style.display = 'none';
+                // Display a welcome message
+                document.body.insertAdjacentHTML('afterbegin', `<div>Welcome, ${username}</div>`);
+            }
+        }
+
+        // Check login status on page load
+        window.onload = checkLogin;
+    </script>
+</body>
+</html>
