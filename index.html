@@ -9,13 +9,13 @@
     <div style="float: inline-end;" class="login">
         <div id="loginForm" style="display: block;">
             <h2>Login Form</h2>
-            <form>
+            <form onsubmit="return login();">
                 <label for="username">Username:</label><br>
                 <input type="text" id="username" name="username" required><br>
                 <label for="password">Password:</label><br>
                 <input type="password" id="password" name="password" required><br><br>
                 <!-- Login button -->
-                <button type="button" onclick="login()">Login</button>
+                <button type="submit">Login</button>
                 <!-- Reset button -->
                 <button type="button" onclick="resetLogin()">Reset</button>
             </form>
@@ -27,10 +27,11 @@
     </footer>
 
     <script>
-        let isSubmitting = false; // Flag to control reset behavior
+        // Flag to check if user is submitting the form
+        let isSubmitting = false;
 
         function login() {
-            // Set the flag to indicate a form submission
+            // Set the flag to true to prevent clearing on page unload
             isSubmitting = true;
 
             // Get username and password from input fields
@@ -41,8 +42,10 @@
             localStorage.setItem('username', username);
             localStorage.setItem('password', password);
 
-            // Redirect to another page after login
-            window.location.href = 'home.html'; // Redirect to the appropriate page
+            // Redirect to the home page
+            window.location.href = 'home.html'; 
+
+            return false; // Prevent the form from submitting normally
         }
 
         // Function to clear login data
@@ -69,7 +72,7 @@
         // Check login status on page load
         window.onload = checkLogin;
 
-        // Clear login data when the page is reloaded, not when submitting the form
+        // Clear login data when the page is reloaded, but not when submitting the form
         window.addEventListener('beforeunload', function () {
             if (!isSubmitting) {
                 localStorage.removeItem('username');
