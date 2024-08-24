@@ -27,7 +27,12 @@
     </footer>
 
     <script>
+        let isSubmitting = false; // Flag to control reset behavior
+
         function login() {
+            // Set the flag to indicate a form submission
+            isSubmitting = true;
+
             // Get username and password from input fields
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
@@ -64,10 +69,12 @@
         // Check login status on page load
         window.onload = checkLogin;
 
-        // Clear login data when the page is reloaded
+        // Clear login data when the page is reloaded, not when submitting the form
         window.addEventListener('beforeunload', function () {
-            localStorage.removeItem('username');
-            localStorage.removeItem('password');
+            if (!isSubmitting) {
+                localStorage.removeItem('username');
+                localStorage.removeItem('password');
+            }
         });
     </script>
 </body>
