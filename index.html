@@ -63,6 +63,12 @@
 
         // Check login status on page load
         window.onload = checkLogin;
+
+        // Clear login data when the page is reloaded
+        window.addEventListener('beforeunload', function () {
+            localStorage.removeItem('username');
+            localStorage.removeItem('password');
+        });
     </script>
 </body>
 </html>
