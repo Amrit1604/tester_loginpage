@@ -12,9 +12,21 @@
     <!-- Back button to go back to the login page -->
     <button onclick="goBack()">Back to Login</button>
 
+    <!-- Reset button to clear login data and go back to the login page -->
+    <button onclick="resetAndGoBack()">Reset</button>
+
     <script>
         function goBack() {
             // Simply redirect back to the login page without clearing local storage
+            window.location.href = 'index.html';
+        }
+
+        function resetAndGoBack() {
+            // Clear local storage
+            localStorage.removeItem('username');
+            localStorage.removeItem('password');
+
+            // Redirect back to the login page
             window.location.href = 'index.html';
         }
     </script>
